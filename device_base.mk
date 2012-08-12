@@ -100,8 +100,13 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
 
 # NFCEE access control
+ifeq ($(TARGET_BUILD_VARIANT),user)
+	NFCEE_ACCESS_PATH := device/samsung/crespo/nfcee_access.xml
+else
+	NFCEE_ACCESS_PATH := device/samsung/crespo/nfcee_access_debug.xml
+endif
 PRODUCT_COPY_FILES += \
-	device/samsung/crespo/nfcee_access.xml:system/etc/nfcee_access.xml
+	$(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
 # Generated kcm keymaps
 PRODUCT_PACKAGES += \
@@ -227,7 +232,6 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
-$(call inherit-product-if-exists, frameworks/base/data/videos/VideoPackage2.mk)
 $(call inherit-product-if-exists, vendor/nxp/pn544/nxp-pn544-fw-vendor.mk)
 
 WIFI_BAND := 802_11_BG
