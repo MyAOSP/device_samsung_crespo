@@ -35,7 +35,6 @@ TARGET_BOOTLOADER_BOARD_NAME := herring
 TARGET_SEC_INTERNAL_STORAGE := false
 
 # Enable NEON feature
-TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
@@ -61,10 +60,20 @@ TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_RECOVERY_UI_LIB := librecovery_ui_crespo
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/crespo
 
+# Define kernel config for inline building
+# TARGET_KERNEL_CONFIG := crespo_defconfig
+# TARGET_KERNEL_SOURCE := kernel/samsung/crespo
+
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 536870912
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1073741824
 BOARD_FLASH_BLOCK_SIZE := 4096
+
+
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/crespo/graphics.c
+
+BOARD_USE_SKIA_LCDTEXT := true
 
 # Connectivity - Wi-Fi
 WPA_SUPPLICANT_VERSION      := VER_0_8_X

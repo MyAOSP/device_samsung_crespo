@@ -1,3 +1,4 @@
+# Portions Copyright (C) 2012 VMware, Inc. All Rights Reserved.
 # Copyright (C) 2010 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,7 +40,7 @@
 # These is the hardware-specific overlay, which points to the location
 # of hardware-specific resource overrides, typically the frameworks and
 # application settings that are stored in resourced.
-DEVICE_PACKAGE_OVERLAYS := device/samsung/crespo/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/crespo/overlay
 
 # These are the hardware-specific configuration files
 PRODUCT_COPY_FILES := \
@@ -139,7 +140,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	lights.s5pc110 \
 	hwcomposer.s5pc110 \
-	sensors.herring 
+	sensors.herring
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -169,13 +170,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
 	device/samsung/crespo/mxt224_ts_input.idc:system/usr/idc/mxt224_ts_input.idc
 
+# Device app
+PRODUCT_PACKAGES += \
+        CrespoParts
+
 # for bugmailer
-ifneq ($(TARGET_BUILD_VARIANT),user)
-	PRODUCT_PACKAGES += send_bug
-	PRODUCT_COPY_FILES += \
-		system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
-		system/extras/bugmailer/send_bug:system/bin/send_bug
-endif
+PRODUCT_PACKAGES += send_bug
+PRODUCT_COPY_FILES += \
+	system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
+	system/extras/bugmailer/send_bug:system/bin/send_bug
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -202,8 +205,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
 # Note that the only such settings should be the ones that are too low-level to
 # be reachable from resources or other mechanisms.
 PRODUCT_PROPERTY_OVERRIDES += \
-	wifi.interface=wlan0 \
-	wifi.supplicant_scan_interval=180
+	wifi.interface=wlan0
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -216,21 +218,6 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Screen size is "normal", density is "hdpi"
 PRODUCT_AAPT_CONFIG := normal hdpi
-
-ifeq ($(TARGET_PREBUILT_WIFI_MODULE),)
-LOCAL_WIFI_MODULE := device/samsung/crespo/bcm4329.ko
-else
-LOCAL_WIFI_MODULE := $(TARGET_PREBUILT_WIFI_MODULE)
-endif
-
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/samsung/crespo/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
 
 $(call inherit-product-if-exists, vendor/nxp/pn544/nxp-pn544-fw-vendor.mk)
 
