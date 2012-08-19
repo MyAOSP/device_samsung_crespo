@@ -173,7 +173,7 @@ PRODUCT_COPY_FILES += \
 
 # Device app
 PRODUCT_PACKAGES += \
-        CrespoParts
+    CrespoParts
 
 # for bugmailer
 PRODUCT_PACKAGES += send_bug
