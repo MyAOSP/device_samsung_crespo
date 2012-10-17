@@ -60,11 +60,6 @@ TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_RECOVERY_UI_LIB := librecovery_ui_crespo
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/crespo
 
-# Define kernel config for inline building
-# TARGET_KERNEL_CONFIG := crespo_defconfig
-# TARGET_KERNEL_SOURCE := kernel/samsung/crespo
-TARGET_PREBUILT_KERNEL := device/samsung/crespo/kernel
-
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 536870912
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1073741824

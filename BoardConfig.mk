@@ -24,5 +24,10 @@
 # config.
 TARGET_BOARD_INFO_FILE ?= device/samsung/crespo/board-info.txt
 
+# Define kernel config for inline building
+# TARGET_KERNEL_CONFIG := crespo_defconfig
+# TARGET_KERNEL_SOURCE := kernel/samsung/crespo
+TARGET_PREBUILT_KERNEL := device/samsung/crespo/kernel
+
 # Use the parts that are common between all crespos
 include device/samsung/crespo/BoardConfigCommon.mk
