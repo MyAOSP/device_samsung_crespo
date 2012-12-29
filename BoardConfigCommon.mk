@@ -17,6 +17,11 @@
 # Product-specific compile-time definitions.
 #
 
+# Boot Animation
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+TARGET_BOOTANIMATION_USE_RGB565 := true
+
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 
@@ -35,6 +40,7 @@ TARGET_BOOTLOADER_BOARD_NAME := herring
 TARGET_SEC_INTERNAL_STORAGE := false
 
 # Enable NEON feature
+TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
@@ -59,6 +65,10 @@ BOARD_KERNEL_CMDLINE := console=ttyFIQ0 no_console_suspend
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_RECOVERY_UI_LIB := librecovery_ui_crespo
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/crespo
+
+# Define kernel config for inline building
+TARGET_KERNEL_CONFIG := crespo_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/crespo
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 536870912
@@ -94,3 +104,7 @@ USE_OPENGL_RENDERER	:= true
 TARGET_DISABLE_TRIPLE_BUFFERING := false
 
 BOARD_ALLOW_EGL_HIBERNATION := true
+
+# hwcomposer: custom vsync ioctl
+BOARD_CUSTOM_VSYNC_IOCTL := true
+

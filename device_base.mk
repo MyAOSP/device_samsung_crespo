@@ -46,7 +46,8 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/crespo/overlay
 PRODUCT_COPY_FILES := \
 	$(LOCAL_KERNEL):kernel \
 	device/samsung/crespo/vold.fstab:system/etc/vold.fstab \
-	device/samsung/crespo/egl.cfg:system/lib/egl/egl.cfg
+	device/samsung/crespo/egl.cfg:system/lib/egl/egl.cfg \
+	device/samsung/crespo/lights.s5pc110.so:system/lib/hw/lights.s5pc110.so
 
 # Init files
 PRODUCT_COPY_FILES += \
@@ -67,10 +68,6 @@ PRODUCT_COPY_FILES += \
 	device/samsung/crespo/sec_jack.kcm:system/usr/keychars/sec_jack.kcm \
 	device/samsung/crespo/mxt224_ts_input.kl:system/usr/keylayout/mxt224_ts_input.kl \
 	device/samsung/crespo/mxt224_ts_input.kcm:system/usr/keychars/mxt224_ts_input.kcm
-
-#Bluetooth setup
-PRODUCT_COPY_FILES += \
-	system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf \
 
 #NVRAM setup
 PRODUCT_COPY_FILES += \
@@ -141,11 +138,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	lights.s5pc110 \
 	hwcomposer.s5pc110 \
-	sensors.herring
+	sensors.herring \
+    power.s5pc110
 
 # Torch
 PRODUCT_PACKAGES += \
-	Torch
+    Torch
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -177,7 +175,7 @@ PRODUCT_COPY_FILES += \
 
 # Device app
 PRODUCT_PACKAGES += \
-    CrespoParts
+        CrespoParts
 
 # for bugmailer
 PRODUCT_PACKAGES += send_bug
